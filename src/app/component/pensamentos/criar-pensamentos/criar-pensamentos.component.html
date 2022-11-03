@@ -30,7 +30,7 @@
       class="mensagem__erro"
       *ngIf="criarForm.get('autor')?.errors?.['required'] && criarForm.get('autor')?.touched"
     >
-      Campo óbrigatorio!
+      Autoria óbrigatorio!
     </div>
     <label for="modelo">Selecione o medelo de card</label>
     <div class="container-radio">
@@ -107,9 +107,10 @@
       </div>
     </div>
     <div class="acoes">
-      <button [disabled]="criarForm.valid"
-       (click)="CriarPensamento()" class="botao__desabilitado"
-       [ngClass]="habilitarBotao()"
+      <button
+        [disabled]="criarForm.valid"
+        (click)="CriarPensamento()"
+        [ngClass]="habilitarBotao()"
        >Salvar</button>
       <button (click)="Cancelar()" class="botao">Cancelar</button>
     </div>

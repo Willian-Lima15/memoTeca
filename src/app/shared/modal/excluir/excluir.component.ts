@@ -25,7 +25,7 @@ export class ExcluirComponent implements OnInit {
 
   ngOnInit() {
     const id = this._route.snapshot.paramMap.get('id')
-    this._pensamentoService.buscarPorId(Number.parseInt(id ?? '')).subscribe(res => {
+    this._pensamentoService.buscarPorId(parseInt(id!)).subscribe(res => {
       this.pensamento = res;
     })
   }
@@ -33,6 +33,7 @@ export class ExcluirComponent implements OnInit {
   excluir() {
     if(this.pensamento.id){
       this._pensamentoService.excluir(this.pensamento.id).subscribe(()=>{
+
         this._router.navigate(['/listar-pensamento'])
       });
     }

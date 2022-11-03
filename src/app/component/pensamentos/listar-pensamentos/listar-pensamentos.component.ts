@@ -16,6 +16,8 @@ export class ListarPensamentosComponent implements OnInit {
 
   ngOnInit() {
     this._pensamentoService.listar().subscribe((res: any)=> {
+      console.log(res);
+
       this.listaPensamentos = res;
     });
   }

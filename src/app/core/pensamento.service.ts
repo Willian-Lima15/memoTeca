@@ -14,13 +14,8 @@ export class PensamentoService {
     private _http: HttpClient
   ) { }
 
-  listar() {
+  listar(): Observable<PensamentoModel[]> {
     return this._http.get<PensamentoModel[]>(this._API)
-  }
-
-  buscarPorId(id: number) {
-    const url = `${this._API}/${id}`
-    return this._http.get<PensamentoModel>(url)
   }
 
   criar(pensamento: PensamentoModel): Observable<PensamentoModel> {
@@ -35,6 +30,11 @@ export class PensamentoService {
   excluir(id: number) : Observable<PensamentoModel>{
     const url = `${this._API}/${id}`
     return this._http.delete<PensamentoModel>(url)
+  }
+
+  buscarPorId(id: number): Observable<PensamentoModel> {
+    const url = `${this._API}/${id}`
+    return this._http.get<PensamentoModel>(url)
   }
 
 }
