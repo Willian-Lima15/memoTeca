@@ -1,3 +1,5 @@
+import { EditarComponent } from './shared/modal/editar/editar.component';
+import { ExcluirComponent } from './shared/modal/excluir/excluir.component';
 import { ListarPensamentosComponent } from './component/pensamentos/listar-pensamentos/listar-pensamentos.component';
 import { CriarPensamentosComponent } from './component/pensamentos/criar-pensamentos/criar-pensamentos.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +14,12 @@ const routes: Routes = [
   },
   {
     path: 'listar-pensamento', component: ListarPensamentosComponent
+  },
+  {
+    path: 'pensamento/excluir/:id', component: ExcluirComponent
+  },
+  {
+    path: 'pensamento/editar/:id', component: EditarComponent
   }
 ];
 

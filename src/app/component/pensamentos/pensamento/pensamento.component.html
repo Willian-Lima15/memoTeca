@@ -3,10 +3,10 @@
   <p class="conteudo">{{pensamento.conteudo}}</p>
   <p class="autoria"><b>{{pensamento.autor}}</b></p>
   <div class="acoes">
-    <button class="botao-editar">
-      <img src="/../assets/img/icone-editar.png" alt="icone editar">
+    <button class="botao-editar" >
+      <img src="/../assets/img/icone-editar.png" [routerLink]="['/pensamento/editar/{{pensamento.id}}']" alt="icone editar">
     </button>
-    <button class="botao-excluir">
+    <button class="botao-excluir" [routerLink]="['/pensamento/excluir/{{pensamento.id}}']">
       <img src="../assets/img/icone-excluir.png" alt="icone excluir">
     </button>
   </div>

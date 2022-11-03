@@ -1,5 +1,6 @@
+import { PensamentoService } from './../../../core/pensamento.service';
 import { Component, OnInit } from '@angular/core';
-import { Pensamento } from 'src/app/shared/pensamento.model';
+import { PensamentoModel } from 'src/app/shared/pensamento.model';
 
 @Component({
   selector: 'app-listar-pensamentos',
@@ -8,10 +9,15 @@ import { Pensamento } from 'src/app/shared/pensamento.model';
 })
 export class ListarPensamentosComponent implements OnInit {
 
-  listaPensamentos: Pensamento[]=[]
-  constructor() { }
+  listaPensamentos: PensamentoModel[]=[]
+  constructor(
+    private _pensamentoService: PensamentoService
+  ) { }
 
   ngOnInit() {
+    this._pensamentoService.listar().subscribe((res: any)=> {
+      this.listaPensamentos = res;
+    });
   }
 
 }
