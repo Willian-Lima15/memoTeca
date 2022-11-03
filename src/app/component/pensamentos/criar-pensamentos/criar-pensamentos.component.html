@@ -2,7 +2,7 @@
   <header class="header">
     <h2>Adicione um <br />pensamento novo:</h2>
   </header>
-  <form action="">
+  <form [formGroup]="criarForm">
     <label for="pensamento">Pensamento</label>
     <input
       type="text"
@@ -10,28 +10,39 @@
       id="pensamento"
       name="pensamento"
       placeholder="Digite o pensamento"
-      [(ngModel)]="pensamento.conteudo"
+      formControlName="conteudo"
     />
+    <div
+      class="mensagem__erro"
+      *ngIf="criarForm.get('conteudo')?.errors?.['required'] && criarForm.get('conteudo')?.touched"
+    >
+      Pensamento óbrigatorio!
+    </div>
     <label for="autoria">Autoria</label>
     <input
       type="text"
       class="input"
       id="autoria"
-      name="autoria"
       placeholder="Digite a autoria ou fonte"
-      [(ngModel)]="pensamento.autor"
+      formControlName="autor"
     />
+    <div
+      class="mensagem__erro"
+      *ngIf="criarForm.get('autor')?.errors?.['required'] && criarForm.get('autor')?.touched"
+    >
+      Campo óbrigatorio!
+    </div>
     <label for="modelo">Selecione o medelo de card</label>
     <div class="container-radio">
       <div class="radio-modelo">
         <label for="modelo1">
           <input
-             type="radio"
-             id="modelo1"
-             value="modelo1"
-             nome="modelo-card"
-             [(ngModel)]="pensamento.modelo"
-           />
+            type="radio"
+            id="modelo1"
+            value="modelo1"
+            nome="modelo-card"
+            formControlName="modelo"
+          />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -39,21 +50,23 @@
         </label>
         previa:
         <div class="modelo modelo2 ff-roboto-mono">
-          <img src="../../../../assets/img/modelo1.png" alt="modelo2">
-          <p class="conteudo">{{pensamento.conteudo}}</p>
-          <p class="autoria"><b>{{pensamento.autor}}</b></p>
+          <img src="../../../../assets/img/modelo1.png" alt="modelo2" />
+          <p class="conteudo">{{ criarForm.get("conteudo")?.value }}</p>
+          <p class="autoria">
+            <b>{{ criarForm.get("autor")?.value }}</b>
+          </p>
         </div>
       </div>
 
       <div class="radio-modelo">
         <label for="modelo2">
           <input
-             type="radio"
-             id="modelo2"
-             value="modelo2"
-             nome="modelo-card"
-             [(ngModel)]="pensamento.modelo"
-           />
+            type="radio"
+            id="modelo2"
+            value="modelo2"
+            nome="modelo-card"
+            formControlName="modelo"
+          />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -61,21 +74,23 @@
         </label>
         previa:
         <div class="modelo modelo3 ff-roboto-mono">
-          <img src="../../../../assets/img/modelo2.png" alt="modelo2">
-          <p class="conteudo">{{pensamento.conteudo}}</p>
-          <p class="autoria"><b>{{pensamento.autor}}</b></p>
+          <img src="../../../../assets/img/modelo2.png" alt="modelo2" />
+          <p class="conteudo">{{ criarForm.get("conteudo")?.value }}</p>
+          <p class="autoria">
+            <b>{{ criarForm.get("autor")?.value }}</b>
+          </p>
         </div>
       </div>
 
       <div class="radio-modelo">
         <label for="modelo3">
           <input
-             type="radio"
-             id="modelo3"
-             value="modelo3"
-             nome="modelo-card"
-             [(ngModel)]="pensamento.modelo"
-           />
+            type="radio"
+            id="modelo3"
+            value="modelo3"
+            nome="modelo-card"
+            formControlName="modelo"
+          />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -83,15 +98,20 @@
         </label>
         previa:
         <div class="modelo modelo3 ff-roboto-mono">
-          <img src="../../../../assets/img/modelo3.png" alt="modelo3">
-          <p class="conteudo">{{pensamento.conteudo}}</p>
-          <p class="autoria"><b>{{pensamento.autor}}</b></p>
+          <img src="../../../../assets/img/modelo3.png" alt="modelo3" />
+          <p class="conteudo">{{ criarForm.get("conteudo")?.value }}</p>
+          <p class="autoria">
+            <b>{{ criarForm.get("autor")?.value }}</b>
+          </p>
         </div>
       </div>
-      </div>
-      <div class="acoes">
-        <button (click)="CriarPensamento()" class="botao">Salvar</button>
-        <button (click)="Cancelar()" class="botao">Cancelar</button>
-      </div>
+    </div>
+    <div class="acoes">
+      <button [disabled]="criarForm.valid"
+       (click)="CriarPensamento()" class="botao__desabilitado"
+       [ngClass]="habilitarBotao()"
+       >Salvar</button>
+      <button (click)="Cancelar()" class="botao">Cancelar</button>
+    </div>
   </form>
 </section>

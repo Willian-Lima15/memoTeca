@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PensamentoModel } from 'src/app/shared/pensamento.model';
+import { PensamentoModel } from 'src/app/shared/model/pensamento.model';
 
 @Component({
   selector: 'app-pensamento',

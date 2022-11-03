@@ -2,7 +2,7 @@ import { EditarComponent } from './shared/modal/editar/editar.component';
 import { PensamentoComponent } from './component/pensamentos/pensamento/pensamento.component';
 import { ListarPensamentosComponent } from './component/pensamentos/listar-pensamentos/listar-pensamentos.component';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -28,7 +28,8 @@ import { ExcluirComponent } from './shared/modal/excluir/excluir.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

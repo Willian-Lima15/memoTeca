@@ -1,5 +1,5 @@
-import { PensamentoModel } from 'src/app/shared/pensamento.model';
-import { Component, OnInit } from '@angular/core';
+import { PensamentoModel } from 'src/app/shared/model/pensamento.model';
+import { Component, Input, OnInit } from '@angular/core';
 import { PensamentoService } from 'src/app/core/pensamento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,11 +10,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditarComponent implements OnInit {
 
-  pensamento: PensamentoModel = {
+  @Input() pensamento: PensamentoModel = {
     id: 0,
     conteudo: '',
     autor: '',
-    modelo:''
+    modelo: ''
   }
 
   constructor(
@@ -25,20 +25,18 @@ export class EditarComponent implements OnInit {
 
   ngOnInit() {
     const id = this._route.snapshot.paramMap.get('id')
-    this._pensamentoService.buscarPorId(parseInt(id!)).subscribe((res)=> {
-      console.log(res + 'teste');
-
+    this._pensamentoService.buscarPorId(Number.parseInt(id ?? '')).subscribe((res) => {
       this.pensamento = res
     })
   }
 
-  EditarPensamento(){
-    this._pensamentoService.editar(this.pensamento).subscribe(()=>{
+  EditarPensamento() {
+    this._pensamentoService.editar(this.pensamento).subscribe(() => {
       this._router.navigate(['/listar-pensamento'])
     })
   }
 
-  Cancelar(){
+  Cancelar() {
     this._router.navigate(['/listar-pensamento'])
   }
 

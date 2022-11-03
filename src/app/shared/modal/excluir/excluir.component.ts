@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PensamentoService } from 'src/app/core/pensamento.service';
-import { PensamentoModel } from '../../pensamento.model';
+import { PensamentoModel } from '../../model/pensamento.model';
 
 @Component({
   selector: 'app-excluir',
@@ -11,7 +11,7 @@ import { PensamentoModel } from '../../pensamento.model';
 export class ExcluirComponent implements OnInit {
 
   pensamento: PensamentoModel = {
-    id:0,
+    id: 0,
     conteudo: '',
     autor: '',
     modelo:''
@@ -25,7 +25,7 @@ export class ExcluirComponent implements OnInit {
 
   ngOnInit() {
     const id = this._route.snapshot.paramMap.get('id')
-    this._pensamentoService.buscarPorId(parseInt(id!)).subscribe(res => {
+    this._pensamentoService.buscarPorId(Number.parseInt(id ?? '')).subscribe(res => {
       this.pensamento = res;
     })
   }

@@ -1,6 +1,6 @@
 import { PensamentoService } from './../../../core/pensamento.service';
 import { Component, OnInit } from '@angular/core';
-import { PensamentoModel } from 'src/app/shared/pensamento.model';
+import { PensamentoModel } from 'src/app/shared/model/pensamento.model';
 
 @Component({
   selector: 'app-listar-pensamentos',
