@@ -1,5 +1,5 @@
-import { PensamentoModel } from 'src/app/shared/model/pensamento.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { PensamentoService } from 'src/app/core/pensamento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,14 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditarComponent implements OnInit {
 
-  @Input() pensamento: PensamentoModel = {
-    id: 0,
-    conteudo: '',
-    autor: '',
-    modelo: ''
-  }
-
+  criarForm!: FormGroup
   constructor(
+    private _fb: FormBuilder,
     private _pensamentoService: PensamentoService,
     private _router: Router,
     private _route: ActivatedRoute
@@ -26,12 +21,23 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
     const id = this._route.snapshot.paramMap.get('id')
     this._pensamentoService.buscarPorId(parseInt(id!)).subscribe((res) => {
-      this.pensamento = res
+      this.criarForm = this._fb.group({
+        id: [res.id],
+        conteudo: [res.conteudo, Validators.compose([
+          Validators.required,
+          Validators.maxLength(120)
+        ])],
+        autor: [res.autor, Validators.compose([
+          Validators.required,
+        ])],
+        modelo: [res.modelo],
+        favorito: [res.favorito]
+      })
     })
   }
 
   EditarPensamento() {
-    this._pensamentoService.editar(this.pensamento).subscribe(() => {
+    this._pensamentoService.editar(this.criarForm.value).subscribe(() => {
       this._router.navigate(['/listar-pensamento'])
     })
   }

@@ -14,7 +14,8 @@ export class ExcluirComponent implements OnInit {
     id: 0,
     conteudo: '',
     autor: '',
-    modelo:''
+    modelo:'',
+    favorito: false
   }
 
   constructor(

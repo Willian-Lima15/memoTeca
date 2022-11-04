@@ -1,4 +1,3 @@
-import { PensamentoModel } from '../../../shared/model/pensamento.model';
 import { PensamentoService } from './../../../core/pensamento.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -29,7 +28,8 @@ export class CriarPensamentosComponent implements OnInit {
       autor: ['', Validators.compose([
         Validators.required,
       ])],
-      modelo: ['']
+      modelo: [''],
+      favorito:[false]
     })
   }
 
