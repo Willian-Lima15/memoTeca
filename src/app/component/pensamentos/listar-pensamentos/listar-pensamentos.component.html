@@ -11,9 +11,9 @@
       />
       <span class="material-symbols-outlined"> search </span>
     </div>
-    <h2 class="ff-inter">Meu mural</h2>
+    <h2 class="ff-inter">{{titulo}}</h2>
     <div class="botoes">
-      <button class="botao">Meu Mural</button>
+      <button class="botao" (click)="recarregarPagina()">Meu Mural</button>
       <button class="botao" (click)="listarFavoritos()">Meus favoritos</button>
       <button class="botao" [routerLink]="['/criar-pensamento']">
         Novo pensamento
@@ -23,7 +23,10 @@
   </header>
   <div class="mural" *ngIf="listaPensamentos.length > 0; else semPensamentos">
     <div *ngFor="let pensamento of listaPensamentos">
-      <app-pensamento [pensamento]="pensamento"></app-pensamento>
+      <app-pensamento
+      [pensamento]="pensamento"
+      [listaFavoritos]="listaFavoritos"
+      ></app-pensamento>
     </div>
   </div>
 </section>

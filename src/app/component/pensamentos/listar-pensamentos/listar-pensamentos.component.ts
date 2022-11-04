@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PensamentoService } from './../../../core/pensamento.service';
 import { Component, OnInit } from '@angular/core';
 import { PensamentoModel } from 'src/app/shared/model/pensamento.model';
@@ -13,10 +14,13 @@ export class ListarPensamentosComponent implements OnInit {
   paginaAtual: number = 1;
   haMaisPensamentos: boolean = true;
   filtro: string = '';
-  favoritos: boolean =  false
+  favoritos: boolean =  false;
+  listaFavoritos: PensamentoModel[]=[]
+  titulo: string = 'Meu mural';
 
   constructor(
-    private _pensamentoService: PensamentoService
+    private _pensamentoService: PensamentoService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -42,13 +46,23 @@ export class ListarPensamentosComponent implements OnInit {
     })
   }
 
+  recarregarPagina() {
+    this.favoritos = false;
+    this.paginaAtual = 1;
+    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this._router.onSameUrlNavigation = 'reload';
+    this._router.navigate([this._router.url]);
+  }
+
   listarFavoritos() {
+    this.titulo = 'Meus favoritos'
     this.favoritos = true
     this.haMaisPensamentos = true
     this.paginaAtual = 1
     this._pensamentoService.listar(this.paginaAtual, this.filtro, this.favoritos)
       .subscribe((res) => {
         this.listaPensamentos = res
+        this.listaFavoritos = res
       })
   }
 
