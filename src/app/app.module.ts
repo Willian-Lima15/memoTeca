@@ -1,3 +1,4 @@
+import { BotoesPaginacaoComponent } from './shared/botoes/botoes-paginacao/botoes-paginacao.component';
 import { EditarComponent } from './shared/modal/editar/editar.component';
 import { PensamentoComponent } from './component/pensamentos/pensamento/pensamento.component';
 import { ListarPensamentosComponent } from './component/pensamentos/listar-pensamentos/listar-pensamentos.component';
@@ -22,7 +23,8 @@ import { ExcluirComponent } from './shared/modal/excluir/excluir.component';
     ListarPensamentosComponent,
     PensamentoComponent,
     ExcluirComponent,
-    EditarComponent
+    EditarComponent,
+    BotoesPaginacaoComponent
    ],
   imports: [
     BrowserModule,
